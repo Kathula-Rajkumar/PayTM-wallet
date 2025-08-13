@@ -1,16 +1,32 @@
 {
     "name": "@repo/db",
     "version": "0.0.0",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+      "dist",
+      "prisma"
+    ],
+    "scripts": {
+      "build": "tsc",
+      "postinstall": "prisma generate"
+    },
     "dependencies": {
-        "@prisma/client": "^5.11.0"
+      "@prisma/client": "^5.11.0"
     },
     "devDependencies": {
-        "prisma": "5.11.0"
+      "prisma": "5.11.0",
+      "typescript": "^5.0.0"
     },
     "exports": {
-        "./client": "./index.ts"
+      "./client": {
+        "import": "./dist/index.js",
+        "require": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      }
     },
     "prisma": {
-        "seed": "ts-node prisma/seed.ts"
+      "seed": "ts-node prisma/seed.ts"
     }
-}
+  }
+  
