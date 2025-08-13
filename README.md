@@ -1,20 +1,30 @@
-- Clone the repo
+# 1️⃣ Clone the repository
+git clone https://github.com/Kathula-Rajkumar/PayTM-wallet.git
+cd PayTM-wallet
 
-```jsx
-git clone https://github.com/100xdevs-cohort-2/week-17-final-code
-```
+# 2️⃣ Install dependencies
+npm install
 
-- npm install
-- Run postgres either locally or on the cloud (neon.tech)
+# 3️⃣ Run PostgreSQL locally with Docker
+docker run -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
 
-```jsx
-docker run  -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
-```
+# 4️⃣ Copy .env.example files to .env
+cp packages/db/.env.example packages/db/.env
+cp apps/user-app/.env.example apps/user-app/.env
 
-- Copy over all .env.example files to .env
-- Update .env files everywhere with the right db url
-- Go to `packages/db`
-    - npx prisma migrate dev
-    - npx prisma db seed
-- Go to `apps/user-app` , run `npm run dev`
-- Try logging in using phone - 1111111111 , password - alice (See `seed.ts`)
+# 5️⃣ Update .env files with your database URL
+# Example: DATABASE_URL="postgres://<USERNAME>:<PASSWORD>@localhost:5432/<DB_NAME>?sslmode=require"
+
+# 6️⃣ Setup the database
+cd packages/db
+npx prisma migrate dev
+npx prisma db seed (see the seed db)
+
+# 7️⃣ Run the user app
+cd ../../apps/user-app
+npm run dev
+
+# Open http://localhost:3000 in your browser
+# Test login with:
+# Phone: 1111111111
+# Password: alice
