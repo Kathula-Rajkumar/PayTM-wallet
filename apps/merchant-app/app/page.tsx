@@ -1,4 +1,5 @@
 "use client";
+//@ts-ignore
 
 import { useBalance } from "@repo/store/balance";
 
